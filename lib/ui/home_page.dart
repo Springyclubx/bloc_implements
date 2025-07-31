@@ -74,6 +74,9 @@ class _MyHomePageView extends StatelessWidget {
                           style: styleSmall,
                           children: [
                             TextSpan(
+                              text: context.read<CounterCubit>().guigas,
+                            ),
+                            TextSpan(
                               text: 'Year: ',
                             ),
                             TextSpan(
@@ -113,9 +116,6 @@ class _MyHomePageView extends StatelessWidget {
                             TextFormDefault(
                               hintText: 'Name',
                               controller: controllerName,
-                              validator: (value) {
-
-                              },
                             ),
                             TextFormDefault(
                               hintText: 'Year',
@@ -131,6 +131,8 @@ class _MyHomePageView extends StatelessWidget {
                                 FilteringTextInputFormatter.digitsOnly,
                               ],
                             ),
+                            TextFormWord(),
+
                           ],
                         ),
                       ),
@@ -203,6 +205,26 @@ class TextFormDefault extends StatelessWidget {
       ),
       validator: validator,
       style: style ?? styleSmall,
+    );
+  }
+}
+class TextFormWord extends StatelessWidget {
+  const TextFormWord({
+    super.key,
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final styleSmall = textTheme.bodySmall;
+    return TextFormField(
+      decoration: InputDecoration(
+        isDense: true,
+        contentPadding: EdgeInsets.zero,
+        hintText: 'texto',
+      ),
+      style:  styleSmall,
     );
   }
 }
